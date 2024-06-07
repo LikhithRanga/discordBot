@@ -22,7 +22,7 @@ client.on('messageCreate', (msg)=>{
     //REPLICATE THE ABOVE FOR THE SAME
 });
 
-client.on('interactionCreate', (interaction)=>{
+client.on('interactionCreate', async (interaction)=>{
     if(!interaction.isChatInputCommand())return;
 
     if(interaction.commandName==='hey'){
@@ -34,6 +34,25 @@ client.on('interactionCreate', (interaction)=>{
         const num2= interaction.options.get('second-no').value;
         const num3= interaction.options.get('third-no').value;
         interaction.reply(`The sum of three number is ${num1+num2+num3}`);
+    }
+    if(interaction.commandName==='qrcode'){
+        const text= interaction.options.get('qrtext').value;
+        const url = `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(text)}&choe=UTF-8`;
+
+        try{
+            const fetch= await import('node-fetch').then(mod=> mod.default);
+            const response=await fetch(url);
+            if(!response.ok) console.error('There was no ok network response');
+            
+            const arrayBuffer=await response.arrayBuffer();
+            const buffer= Buffer.from(arrayBuffer);
+            const attachment={attachment: buffer, name: 'qrcode.png'};
+
+            interaction.reply({files: [attachment]});
+
+        }catch(error){
+            console.error('Error Fetching the QR code:', error);
+        }
     }
 });
 

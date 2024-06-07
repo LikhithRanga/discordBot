@@ -8,6 +8,17 @@ const commands=[
         description: 'Replies with HELLO',
     },
     {
+
+        name:'qrcode',
+        description: 'Generates',
+        options:[ {
+            name: 'qrtext',
+            description: 'Enter Text to generate QR code',
+            type: ApplicationCommandOptionType.String,
+            required: true,
+        }],
+    },
+    {
         name:'sum',
         description: 'sum of three number is returned',
         options: [
