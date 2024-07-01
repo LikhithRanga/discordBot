@@ -1,13 +1,41 @@
-QR Generation Discord Bot
+# QR Generation Discord Bot
 
---This Code is able to set up a discord bot and do basic interactions and also QR code generation from text and get png image.--
+This code sets up a Discord bot that can perform basic interactions and generate QR codes from text, returning them as PNG images.
 
-Phase-01 Setup Discord bot on "https://discord.com/developers/applications":
-    Click on Create New Application ; Setup Name and Create;
-    Then go to your application->bots and select three button "ON" in "PRIVILEGED GATEWAY INTENTS" after setting bot to private by turning OFF public bot
-    Go To OAuth2, in scopes select "bot" & "applications.commands"
-    Give permissions for basic give "Administrator" Copy Generated URL and paste it in your server
-    Go To Bot section, Select Reset TOKEN and put it in .env file==>"TOKEN=<<TOKEN VALUE>>" + I added .gitignore-->cat==>".env" to ignore the file into Github.
-    Also Added GUILD_ID=Server ID and CLIENT_ID=BOT ID from discord.. 
+## Phase-01: Setup Discord Bot on [Discord Developer Portal](https://discord.com/developers/applications)
 
-QR CODE GET REQUEST GUIDE DOC:https://developers.google.com/chart/infographics/docs/qr_codes
+1. **Create a New Application**
+    - Click on **Create New Application**.
+    - Set up the name and create the application.
+
+2. **Configure the Bot**
+    - Go to your application, navigate to the **Bot** section.
+    - Set the bot to private by turning off **Public Bot**.
+    - Enable the following **Privileged Gateway Intents**:
+        - `PRESENCE INTENT`
+        - `SERVER MEMBERS INTENT`
+        - `MESSAGE CONTENT INTENT`
+
+3. **OAuth2 Setup**
+    - Go to the **OAuth2** section, under **Scopes**, select:
+        - `bot`
+        - `applications.commands`
+    - Under **Bot Permissions**, grant the **Administrator** permission.
+    - Copy the generated URL and paste it into your server's invite link.
+
+4. **Bot Token Setup**
+    - Go to the **Bot** section, select **Reset Token** and copy the token.
+    - Create a `.env` file in your project directory and add the following:
+      ```
+      TOKEN=<<TOKEN VALUE>>
+      GUILD_ID=<<SERVER ID>>
+      CLIENT_ID=<<BOT ID>>
+      ```
+    - Add `.env` to your `.gitignore` file to ensure it is not pushed to GitHub:
+      ```
+      .env
+      ```
+
+## QR Code Get Request Guide
+
+Refer to the official documentation for generating QR codes: [Google Charts QR Code API](https://developers.google.com/chart/infographics/docs/qr_codes)
